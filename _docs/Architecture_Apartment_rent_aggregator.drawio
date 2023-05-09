@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-05-09T15:53:03.563Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="dONrCzmFiL5GbPUB31gp" version="21.2.3" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2023-05-09T15:57:57.991Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="c-ARBtJ3_Pg9RC_SlzA_" version="21.2.3" type="github" pages="4">
   <diagram name="High-level application" id="High-level_application">
     <mxGraphModel dx="1834" dy="756" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -237,7 +237,7 @@
         <mxCell id="sXfjP2PpITpkZqSWbeka-1" value="Database" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fontSize=20;labelBackgroundColor=none;fillColor=#f9ded4;" vertex="1" parent="CYjoajdfU9iSqwFnkjiu-5">
           <mxGeometry x="20" y="50" width="160" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="kCEH-rm8-NThNVafBbZ4-1" value="Message broker" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fef3cf;fontSize=20;" vertex="1" parent="1">
+        <mxCell id="kCEH-rm8-NThNVafBbZ4-1" value="Message broker" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e5f5ff;fontSize=20;" vertex="1" parent="1">
           <mxGeometry x="-60" y="920" width="710" height="50" as="geometry" />
         </mxCell>
         <mxCell id="kCEH-rm8-NThNVafBbZ4-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="OO9s4GCvRSFLijvhoHis-7" target="kCEH-rm8-NThNVafBbZ4-1">
