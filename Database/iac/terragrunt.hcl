@@ -2,6 +2,10 @@ terraform {
   source = "tfr:///terraform-aws-modules/dynamodb-table/aws?version=3.3.0"
 }
 
+locals {
+    identity_arn = get_aws_caller_identity_arn()
+}
+
 inputs = {
   name      = "RentEntries"
   hash_key  = "Url"
@@ -17,11 +21,11 @@ inputs = {
     }
   ]
   ttl_attribute_name = "Ttl"
-  ttl_enabled = "true"
+  ttl_enabled        = "true"
   billing_mode       = "PROVISIONED"
   read_capacity      = 1
   write_capacity     = 1
   tags = {
-      Terraform = "true"
+    Terraform = "true"
   }
 }
