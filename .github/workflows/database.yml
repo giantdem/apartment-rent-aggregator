@@ -95,7 +95,7 @@ jobs:
       run: terragrunt init
 
     - name: Terragrunt Format
-      run: terragrunt fmt -check
+      run: terragrunt hclfmt --terragrunt-check
 
     - name: Terragrunt Plan
       run: terragrunt plan -input=false
