@@ -3,7 +3,11 @@ terraform {
 }
 
 locals {
-    identity_arn = get_aws_caller_identity_arn()
+  identity_arn = get_aws_caller_identity_arn()
+}
+
+include "root" {
+  path = find_in_parent_folders()
 }
 
 inputs = {
