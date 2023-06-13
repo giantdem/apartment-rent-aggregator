@@ -62,5 +62,5 @@ jobs:
       run: terragrunt plan -input=false
 
     - name: Terragrunt Apply
-      if: github.ref == 'refs/heads/"main"' && github.event_name == 'push' || github.event.inputs.apply == 'true'
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event.inputs.apply == 'true'
       run: terragrunt apply -auto-approve -input=false
