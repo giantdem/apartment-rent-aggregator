@@ -47,7 +47,13 @@ jobs:
 
     - name: Setup Terragrunt
       run: |
-        curl -LO https://github.com/gruntwork-io/terragrunt/releases/download/v0.46.3/terragrunt_linux_amd64
+        url=$(curl -s https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest | grep "browser_download_url.*terragrunt_linux_arm64" | cut -d '"' -f 4)
+        if [[ $url != *"v0."* ]]; then
+          echo "Error: URL does not contain 'v0.'"
+          exit 1
+        else
+          curl -LO $url
+        fi
         mv terragrunt_linux_amd64 terragrunt
         chmod u+x terragrunt
         sudo mv terragrunt /usr/local/bin/terragrunt
