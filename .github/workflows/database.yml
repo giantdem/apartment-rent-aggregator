@@ -70,8 +70,13 @@ jobs:
       run: terragrunt hclfmt --terragrunt-check
 
     - name: Terragrunt Plan
-      run: terragrunt plan -input=false
+      run: |
+        terragrunt plan -input=false | tee plan_output.txt
+        if grep -q "no changes are needed" plan_output.txt; then
+          echo "SKIP_APPLY=true" >> $GITHUB_ENV
+          echo "No changes. The apply step will be skipped."
+        fi
 
     - name: Terragrunt Apply
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event.inputs.apply == 'true'
+      if: env.SKIP_APPLY != 'true' && (github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event.inputs.apply == 'true')
       run: terragrunt apply -auto-approve -input=false
