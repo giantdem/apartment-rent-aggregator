@@ -1,11 +1,16 @@
 name: 'Database'
 
 on:
-  pull_request:
+  push:
     branches:
       - main
     paths:
       - 'Database/**'
+      - '!Database/**.md'
+  pull_request:
+    paths:
+      - 'Database/**'
+      - '!Database/**.md'
   workflow_dispatch:
     inputs:
       apply:
