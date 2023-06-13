@@ -47,9 +47,12 @@ jobs:
 
     - name: Setup Terragrunt
       run: |
-        url=$(curl -s https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest | grep "browser_download_url.*terragrunt_linux_arm64" | cut -d '"' -f 4)
-        if [[ $url != *"v0."* ]]; then
-          echo "Error: URL does not contain 'v0.'"
+        version="v0"
+        url=$(curl -s https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest \
+          | grep "browser_download_url.*terragrunt_linux_amd64" \
+          | cut -d '"' -f 4)
+        if [[ $url != "https://github.com/gruntwork-io/terragrunt/releases/download/$version"*"/terragrunt_linux_amd64" ]]; then
+          echo "Error: URL does not match the expected pattern for Terragrunt $version"
           exit 1
         else
           curl -LO $url
