@@ -36,10 +36,10 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
 
     - name: Bump version and push tag
-      uses: mathieudutour/github-tag-action@v6
+      uses: mathieudutour/github-tag-action@fcfbdceb3093f6d85a3b194740f8c6cec632f4e2 # v6.1
       id: semver
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -49,30 +49,19 @@ jobs:
         release_branches: ^main$
 
     - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v2
+      uses: aws-actions/configure-aws-credentials@5727f247b64f324ec403ac56ae05e220fd02b65f # v2.1.0
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@633666f66e0061ca3b725c73b2ec20cd13a8fdd1 #v2.0.3
 
     - name: Setup Terragrunt
-      run: |
-        version="v0"
-        url=$(curl -s https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest \
-          | grep "browser_download_url.*terragrunt_linux_amd64" \
-          | cut -d '"' -f 4)
-        if [[ $url != "https://github.com/gruntwork-io/terragrunt/releases/download/$version"*"/terragrunt_linux_amd64" ]]; then
-          echo "Error: URL does not match the expected pattern for Terragrunt $version"
-          exit 1
-        else
-          curl -LO $url
-        fi
-        mv terragrunt_linux_amd64 terragrunt
-        chmod u+x terragrunt
-        sudo mv terragrunt /usr/local/bin/terragrunt
+      uses: autero1/action-terragrunt@22b4647f1263865cda4473831640e71d349db2cd #v1.3.2
+      with:
+        terragrunt_version: 0.46.3
 
     - name: Terragrunt Init
       run: terragrunt init
