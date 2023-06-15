@@ -1,14 +1,13 @@
-generate "backend" {
-  path      = "backend.tf"
-  if_exists = "overwrite_terragrunt"
-  contents  = <<EOF
-terraform {
-  backend "s3" {
+remote_state {
+  backend = "s3"
+  generate = {
+    path      = "backend.tf"
+    if_exists = "overwrite"
+  }
+  config = {
     bucket         = "dzhomir-iacbucket"
     key            = "tf/terraform.tfstate"
     region         = "us-east-1"
     encrypt        = true
   }
-}
-EOF
 }
