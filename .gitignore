@@ -39,3 +39,5 @@ terraform.rc
 .terragrunt-cache
 terragrunt_rendered
 terragrunt_rendered.json
+backend
+backend.tf
