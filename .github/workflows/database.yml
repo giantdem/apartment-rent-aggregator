@@ -22,9 +22,6 @@ on:
 env:
   TERRAGRUNT_WORKING_DIR: Database/iac
 
-permissions:
-  contents: read
-
 jobs:
   terragrunt:
     name: 'Terragrunt'
