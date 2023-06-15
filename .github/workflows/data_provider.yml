@@ -1,0 +1,28 @@
+name: 'Data Provider'
+
+on:
+    push:
+      branches:
+        - main
+      paths:
+        - 'DataProvider/**'
+        - '!DataProvider/**.md'
+    pull_request:
+      paths:
+        - 'DataProvider/**'
+        - '!DataProvider/**.md'
+    workflow_dispatch:
+      inputs:
+        apply:
+          description: 'Apply the changes'
+          required: false
+          type: string
+          default: 'false'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run a one-line script
+        run: echo Hello, world!
