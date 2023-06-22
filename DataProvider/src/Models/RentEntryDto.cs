@@ -4,9 +4,9 @@
     {
         public required string Url { get; set; }
 
-        public required long DateTimePosted { get; set; }
+        public required DateTime DateTimePosted { get; set; }
 
-        public required long Ttl { get; set; }
+        public required DateTime Ttl { get; set; }
 
         public required string Title { get; set; }
 
