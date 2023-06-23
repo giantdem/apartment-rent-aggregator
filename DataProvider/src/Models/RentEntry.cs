@@ -1,7 +1,7 @@
 ﻿namespace DataProvider.Models
 {
     public class RentEntry
-    { // XXX: review summaries & types of both RentEntry and RentEntryDto
+    {
         /// <summary>
         /// The URL of the rent entry on its website
         /// </summary>
@@ -47,29 +47,29 @@
         /// </summary>
         public int? RoomsAmount { get; set; }
 
-        /// <summary> 
-        /// The area of the apartment in square meters 
-        /// </summary> 
+        /// <summary>
+        /// The area of the apartment in square meters
+        /// </summary>
         public double? ApartmentAreaInSqMeters { get; set; }
 
-        /// <summary> 
-        /// The country in which the apartment is located 
-        /// </summary> 
+        /// <summary>
+        /// The country in which the apartment is located
+        /// </summary>
         public required string Country { get; set; }
 
-        /// <summary> 
-        /// The city in which the apartment is located 
-        /// </summary> 
+        /// <summary>
+        /// The city in which the apartment is located
+        /// </summary>
         public required string City { get; set; }
 
-        /// <summary> 
-        /// The area of the city in which the apartment is located 
-        /// </summary> 
+        /// <summary>
+        /// The area of the city in which the apartment is located
+        /// </summary>
         public string? CityArea { get; set; }
 
-        /// <summary> 
-        /// The address of the apartment (not incl. what other fields provide) 
-        /// </summary> 
+        /// <summary>
+        /// The address of the apartment (not incl. what other fields provide)
+        /// </summary>
         public required string Address { get; set; }
     }
 }
