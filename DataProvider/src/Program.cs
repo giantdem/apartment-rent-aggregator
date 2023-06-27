@@ -1,3 +1,5 @@
+using DataProvider.Data;
+using DataProvider.Services;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,9 @@ var logger = new LoggerConfiguration()
     .WriteTo.Console()
     .CreateLogger();
 builder.Logging.AddSerilog(logger);
+
+builder.Services.AddSingleton<IRentRepository, RentRepository>();
+builder.Services.AddSingleton<IRentService, RentService>();
 
 var app = builder.Build();
 
