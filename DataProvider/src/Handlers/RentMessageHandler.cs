@@ -1,10 +1,10 @@
-using DataProvider.Models;
+﻿using DataProvider.Models;
 using DataProvider.Services;
 using MassTransit;
 
 namespace DataProvider.Handlers
 {
-    public class RentMessageHandler : IConsumer<RentEntry>
+    public class RentMessageHandler : IConsumer<Batch<RentEntry>>
     {
         private readonly ILogger<RentMessageHandler> _logger;
         private IRentService _rentService;
@@ -15,9 +15,9 @@ namespace DataProvider.Handlers
             _rentService = rentService;
         }
 
-        public Task Consume(ConsumeContext<RentEntry> context)
+        public Task Consume(ConsumeContext<Batch<RentEntry>> context)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }
