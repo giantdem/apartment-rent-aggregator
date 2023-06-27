@@ -5,10 +5,10 @@ namespace DataProvider.Services
 {
     public class RentService : IRentService
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<RentService> _logger;
         private readonly IRentRepository _rentRepository;
 
-        public RentService(ILogger logger, IRentRepository rentRepository)
+        public RentService(ILogger<RentService> logger, IRentRepository rentRepository)
         {
             _logger = logger;
             _rentRepository = rentRepository;
