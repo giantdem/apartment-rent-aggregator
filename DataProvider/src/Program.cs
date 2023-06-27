@@ -1,5 +1,7 @@
 using DataProvider.Data;
+using DataProvider.Handlers;
 using DataProvider.Services;
+using MassTransit;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,25 @@ builder.Logging.AddSerilog(logger);
 
 builder.Services.AddSingleton<IRentRepository, RentRepository>();
 builder.Services.AddSingleton<IRentService, RentService>();
+
+builder.Services.AddMassTransit(x =>
+{
+    x.AddConsumer<RentMessageHandler>();
+
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.ReceiveEndpoint("RentEntries", e =>
+        {
+            e.ClearSerialization();
+            e.UseRawJsonSerializer();
+
+            e.DiscardFaultedMessages();
+            e.DiscardSkippedMessages();
+
+            e.ConfigureConsumer<RentMessageHandler>(context);
+        });
+    });
+});
 
 var app = builder.Build();
 
