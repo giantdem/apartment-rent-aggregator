@@ -1,23 +1,25 @@
-name: 'Data Provider'
+name: "Data Provider"
 
 on:
-    push:
-      branches:
-        - main
-      paths:
-        - 'DataProvider/**'
-        - '!DataProvider/**.md'
-    pull_request:
-      paths:
-        - 'DataProvider/**'
-        - '!DataProvider/**.md'
-    workflow_dispatch:
-      inputs:
-        apply:
-          description: 'Apply the changes'
-          required: false
-          type: string
-          default: 'false'
+  push:
+    branches:
+      - main
+    paths:
+      - "DataProvider/**"
+      - ".github/workflows/data_provider.yml"
+      - "!DataProvider/**.md"
+  pull_request:
+    paths:
+      - "DataProvider/**"
+      - ".github/workflows/data_provider.yml"
+      - "!DataProvider/**.md"
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "Apply the changes"
+        required: false
+        type: string
+        default: "false"
 
 jobs:
   build:

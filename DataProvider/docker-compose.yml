@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  rabbitmq:
+    image: masstransit/rabbitmq:latest
+    ports:
+     - "5672:5672"
+     - "15672:15672"
+     - "15692:15692"
+  dataprovider:
+    image: ${DOCKER_REGISTRY-}dataprovider
+    build:
+      context: .
+      dockerfile: src/Dockerfile

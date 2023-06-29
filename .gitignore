@@ -41,3 +41,4 @@ terragrunt_rendered
 terragrunt_rendered.json
 backend
 backend.tf
+.vscode

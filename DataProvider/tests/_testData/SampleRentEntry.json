@@ -1,0 +1,16 @@
+{
+  "Url": "https://example.com/rent/123",
+  "DateTimePosted": "2023-06-21T15:22:35+04:00",
+  "Title": "Beautiful 2-bedroom apartment in the city center",
+  "Price": 1200,
+  "Currency": "USD",
+  "BuildingType": "Apartment",
+  "IsBuildingModern": true,
+  "FloorNumber": 3,
+  "RoomsAmount": 2,
+  "ApartmentAreaInSqMeters": 80,
+  "Country": "USA",
+  "City": "New York",
+  "CityArea": "Manhattan",
+  "Address": "123 Main St"
+}

@@ -6,10 +6,12 @@ on:
       - main
     paths:
       - 'Database/**'
+      - '.github/workflows/database.yml'
       - '!Database/**.md'
   pull_request:
     paths:
       - 'Database/**'
+      - '.github/workflows/database.yml'
       - '!Database/**.md'
   workflow_dispatch:
     inputs:
