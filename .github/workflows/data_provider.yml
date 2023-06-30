@@ -16,15 +16,64 @@ on:
   workflow_dispatch:
     inputs:
       apply:
-        description: "Apply the changes"
+        description: "Deploy"
         required: false
         type: string
         default: "false"
 
 jobs:
-  build:
+  ci:
+    name: "CI"
     runs-on: ubuntu-latest
+    # XXX: if: ...
+
+    defaults:
+        run:
+          working-directory: "DataProvider"
+          shell: bash
 
     steps:
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Checkout
+        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@3447fd6a9f9e57506b15f895c5b76d3b197dc7c2 # v3.2.0
+        with:
+          dotnet-version: "7.0.x"
+
+    #   - name: Install dependencies
+    #     run: dotnet restore
+
+    #   - name: Build
+    #     run: dotnet build
+
+      - name: Test with the dotnet CLI
+        run: dotnet test DataProvider.sln
+
+  # publish:
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+
+  #     - name: Log in to Docker Hub
+  #       uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+  #       with:
+  #         username: ${{ secrets.DOCKER_USERNAME }}
+  #         password: ${{ secrets.DOCKER_PASSWORD }}
+
+  #     - name: Extract metadata (tags, labels) for Docker
+  #       id: meta
+  #       uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+  #       with:
+  #         images: my-docker-hub-namespace/my-docker-hub-repository
+
+  #     - name: Build and push Docker image
+  #       uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+  #       with:
+  #         context: .
+  #         file: ./Dockerfile
+  #         push: true
+  #         tags: ${{ steps.meta.outputs.tags }}
+  #         labels: ${{ steps.meta.outputs.labels }}
