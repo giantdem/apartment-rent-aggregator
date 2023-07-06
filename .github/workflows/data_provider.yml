@@ -28,9 +28,9 @@ jobs:
     if: (github.ref != 'refs/heads/main' || github.event_name != 'push') && github.event.inputs.apply != 'true'
 
     defaults:
-        run:
-          working-directory: "DataProvider"
-          shell: bash
+      run:
+        working-directory: "DataProvider"
+        shell: bash
 
     steps:
       - name: Checkout
@@ -48,13 +48,23 @@ jobs:
         run: dotnet test DataProvider.sln
 
   deploy:
-    name: 'Deploy'
+    name: "Deploy"
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event.inputs.apply == 'true'
 
     steps:
       - name: Checkout
         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+
+      - name: Bump version and push tag
+        uses: mathieudutour/github-tag-action@fcfbdceb3093f6d85a3b194740f8c6cec632f4e2 # v6.1
+        id: semver
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: minor
+          dry_run: ${{ github.ref != 'refs/heads/main' }}
+          create_annotated_tag: true
+          release_branches: ^main$
 
   #     - name: Log in to Docker Hub
   #       uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
