@@ -25,7 +25,6 @@ jobs:
   ci:
     name: "CI"
     runs-on: ubuntu-latest
-    if: (github.ref != 'refs/heads/main' || github.event_name != 'push') && github.event.inputs.apply != 'true'
 
     defaults:
       run:
