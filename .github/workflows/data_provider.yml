@@ -83,5 +83,5 @@ jobs:
   #         context: .
   #         file: ./Dockerfile
   #         push: true
-  #         tags: ${{ steps.meta.outputs.tags }}
+  #         tags: ${{ ["latest", steps.pre_release_params.outputs.new_version_with_suffix] }}
   #         labels: ${{ steps.meta.outputs.labels }}
