@@ -76,12 +76,15 @@ jobs:
         uses: docker/metadata-action@818d4b7b91585d195f67373fd9cb0332e31a7175 # v4.6.0
         with:
           images: dmitryzhomir/apartment-rent-aggregator_data-provider
+          tags: |
+            ${{ steps.semver.outputs.new_version_with_suffix }}
+            type=raw,value=latest,enable={{is_default_branch}}
 
-  #     - name: Build and push Docker image
-  #       uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
-  #       with:
-  #         context: .
-  #         file: ./Dockerfile
-  #         push: true
-  #         tags: ${{ ["latest", steps.pre_release_params.outputs.new_version_with_suffix] }}
-  #         labels: ${{ steps.meta.outputs.labels }}
+    #   - name: Build and push Docker image
+    #     uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+    #     with:
+    #       context: .
+    #       file: ./Dockerfile
+    #       push: true
+    #       tags: ${{ steps.meta.outputs.tags }}
+    #       labels: ${{ steps.meta.outputs.labels }}
