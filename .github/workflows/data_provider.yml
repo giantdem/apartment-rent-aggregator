@@ -47,10 +47,10 @@ jobs:
         run: dotnet test DataProvider.sln
 
   deploy:
-    # XXX: make it dependent on the CI job
     name: "Deploy"
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event.inputs.apply == 'true'
+    needs: ci
 
     steps:
       - name: Checkout
