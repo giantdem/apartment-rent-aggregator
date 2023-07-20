@@ -52,7 +52,7 @@ jobs:
   deploy:
     name: "Deploy"
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event.inputs.apply == 'true'
+    if: success() && (github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event.inputs.apply == 'true')
     needs: [semver, ci]
 
     steps:
