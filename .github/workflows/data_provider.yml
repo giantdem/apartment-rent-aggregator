@@ -22,6 +22,9 @@ on:
         default: "false"
 
 jobs:
+  semver:
+    uses: ./.github/workflows/_semver.yml
+
   ci:
     name: "CI"
     runs-on: ubuntu-latest
@@ -50,22 +53,11 @@ jobs:
     name: "Deploy"
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event.inputs.apply == 'true'
-    needs: ci
+    needs: [semver, ci]
 
     steps:
       - name: Checkout
         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
-
-        # TODO: make semver common in a separate workflow
-      - name: Bump version and push tag
-        uses: mathieudutour/github-tag-action@fcfbdceb3093f6d85a3b194740f8c6cec632f4e2 # v6.1
-        id: semver
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: minor
-          dry_run: ${{ github.ref != 'refs/heads/main' }}
-          create_annotated_tag: true
-          release_branches: ^main$
 
       - name: Log in to Docker Hub
         uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc # v2.2.0
@@ -79,7 +71,7 @@ jobs:
         with:
           images: dmitryzhomir/apartment-rent-aggregator_data-provider
           tags: |
-            ${{ steps.semver.outputs.new_tag }}
+            ${{ needs.semver.outputs.new_tag }}
             type=raw,value=latest,enable={{is_default_branch}}
 
     #   - name: Build and push Docker image
