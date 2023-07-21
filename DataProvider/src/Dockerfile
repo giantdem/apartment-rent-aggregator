@@ -5,17 +5,14 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine AS publish
 WORKDIR /src
 COPY ["DataProvider.csproj", "."]
 RUN rm -rf ./bin ./obj
 RUN dotnet restore "./DataProvider.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "DataProvider.csproj" --no-restore -c Release -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "DataProvider.csproj" --no-restore --no-build -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "DataProvider.csproj" --no-restore -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
