@@ -21,6 +21,9 @@ on:
         type: string
         default: "false"
 
+env:
+  WORKING_DIR: DataProvider
+
 jobs:
   semver:
     uses: ./.github/workflows/_semver.yml
@@ -31,7 +34,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: "DataProvider"
+        working-directory: ${{ env.WORKING_DIR }}
         shell: bash
 
     steps:
@@ -74,11 +77,11 @@ jobs:
             ${{ needs.semver.outputs.new_tag }}
             type=raw,value=latest,enable={{is_default_branch}}
 
-    #   - name: Build and push Docker image
-    #     uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
-    #     with:
-    #       context: .
-    #       file: ./Dockerfile
-    #       push: true
-    #       tags: ${{ steps.meta.outputs.tags }}
-    #       labels: ${{ steps.meta.outputs.labels }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825 # v4.1.1
+        with:
+          context: ${{ env.WORKING_DIR }}
+          file: ${{ env.WORKING_DIR }}/src/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
