@@ -1,4 +1,5 @@
-## [ARA-XXXX]
+<!-- ⚠️ Replace "ARA-XXXX" with the actual story ID -->
+## [ARA-XXXX](https://giantdev.atlassian.net/browse/ARA-XXXX)
 
 ### Overview of changes:
 <!-- ⚠️ For better readability, consider adding empty lines between list items, -->
