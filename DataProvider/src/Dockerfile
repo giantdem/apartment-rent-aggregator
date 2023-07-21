@@ -8,6 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["DataProvider.csproj", "."]
+RUN rm -rf ./bin ./obj
 RUN dotnet restore "./DataProvider.csproj"
 COPY . .
 WORKDIR "/src/."
