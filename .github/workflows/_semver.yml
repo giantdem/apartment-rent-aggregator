@@ -1,9 +1,18 @@
 on:
+  check_suite:
+    types: [completed]
   workflow_call:
     outputs:
       new_tag:
         description: "New tag"
         value: ${{ jobs.semver.outputs.new_tag }}
+  workflow_dispatch:
+    inputs:
+      push:
+        description: "Push"
+        required: false
+        type: string
+        default: "false"
 
 jobs:
   semver:
@@ -20,6 +29,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: minor
           default_prerelease_bump: minor
-          dry_run: ${{ github.ref != 'refs/heads/main' }}
+          dry_run: ${{ github.event_name != 'check_suite' && github.event.inputs.push != 'true' }}
           create_annotated_tag: true
           release_branches: ^main$
