@@ -1,3 +1,5 @@
+name: "Semver"
+
 on:
   check_suite:
     types: [completed]
