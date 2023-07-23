@@ -1,32 +1,35 @@
-name: 'Database'
+name: "Database"
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'Database/**'
-      - '.github/workflows/database.yml'
-      - '!Database/**.md'
+      - "Database/**"
+      - ".github/workflows/database.yml"
+      - "!Database/**.md"
   pull_request:
     paths:
-      - 'Database/**'
-      - '.github/workflows/database.yml'
-      - '!Database/**.md'
+      - "Database/**"
+      - ".github/workflows/database.yml"
+      - "!Database/**.md"
   workflow_dispatch:
     inputs:
       apply:
-        description: 'Apply the changes'
+        description: "Apply the changes"
         required: false
         type: string
-        default: 'false'
+        default: "false"
 
 env:
   TERRAGRUNT_WORKING_DIR: Database/iac
 
 jobs:
+  semver:
+    uses: ./.github/workflows/_semver.yml
+
   terragrunt:
-    name: 'Terragrunt'
+    name: "Terragrunt"
     runs-on: ubuntu-latest
 
     defaults:
@@ -34,48 +37,38 @@ jobs:
         shell: bash
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+      - name: Checkout
+        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
 
-    - name: Bump version and push tag
-      uses: mathieudutour/github-tag-action@fcfbdceb3093f6d85a3b194740f8c6cec632f4e2 # v6.1
-      id: semver
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        default_bump: minor
-        dry_run: ${{ github.ref != 'refs/heads/main' }}
-        create_annotated_tag: true
-        release_branches: ^main$
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@5727f247b64f324ec403ac56ae05e220fd02b65f # v2.1.0
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@5727f247b64f324ec403ac56ae05e220fd02b65f # v2.1.0
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@633666f66e0061ca3b725c73b2ec20cd13a8fdd1 #v2.0.3
 
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@633666f66e0061ca3b725c73b2ec20cd13a8fdd1 #v2.0.3
+      - name: Setup Terragrunt
+        uses: autero1/action-terragrunt@22b4647f1263865cda4473831640e71d349db2cd #v1.3.2
+        with:
+          terragrunt_version: 0.46.3
 
-    - name: Setup Terragrunt
-      uses: autero1/action-terragrunt@22b4647f1263865cda4473831640e71d349db2cd #v1.3.2
-      with:
-        terragrunt_version: 0.46.3
+      - name: Terragrunt Init
+        run: terragrunt init
 
-    - name: Terragrunt Init
-      run: terragrunt init
+      - name: Terragrunt Format Check
+        run: terragrunt hclfmt --terragrunt-check
 
-    - name: Terragrunt Format Check
-      run: terragrunt hclfmt --terragrunt-check
+      - name: Terragrunt Plan
+        run: |
+          terragrunt plan -input=false | tee plan_output.txt
+          if grep -q "no changes are needed" plan_output.txt; then
+            echo "SKIP_APPLY=true" >> $GITHUB_ENV
+            echo "No changes. The apply step will be skipped."
+          fi
 
-    - name: Terragrunt Plan
-      run: |
-        terragrunt plan -input=false | tee plan_output.txt
-        if grep -q "no changes are needed" plan_output.txt; then
-          echo "SKIP_APPLY=true" >> $GITHUB_ENV
-          echo "No changes. The apply step will be skipped."
-        fi
-
-    - name: Terragrunt Apply
-      if: env.SKIP_APPLY != 'true' && (github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event.inputs.apply == 'true')
-      run: terragrunt apply -auto-approve -input=false
+      - name: Terragrunt Apply
+        if: env.SKIP_APPLY != 'true' && (github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event.inputs.apply == 'true')
+        run: terragrunt apply -auto-approve -input=false
