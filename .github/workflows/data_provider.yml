@@ -15,11 +15,16 @@ on:
       - "!DataProvider/**.md"
   workflow_dispatch:
     inputs:
-      apply:
-        description: "Deploy"
+      publish:
+        description: "Publish"
         required: false
         type: string
         default: "false"
+      # deploy:
+      #   description: "Deploy"
+      #   required: false
+      #   type: string
+      #   default: "false"
 
 env:
   WORKING_DIR: DataProvider
@@ -52,10 +57,10 @@ jobs:
       - name: Test with the dotnet CLI
         run: dotnet test DataProvider.sln
 
-  deploy:
-    name: "Deploy"
+  publish:
+    name: "Publish"
     runs-on: ubuntu-latest
-    if: success() && (github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event.inputs.apply == 'true')
+    if: success() && (github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event.inputs.publish == 'true')
     needs: [semver, ci]
 
     steps:
@@ -93,3 +98,22 @@ jobs:
           platforms: linux/amd64, linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+  # deploy:
+  #   name: "Deploy"
+  #   runs-on: ubuntu-latest
+  #   if: success() && (github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event.inputs.deploy == 'true')
+  #   needs: publish
+
+  #   env:
+  #     OCI_CLI_USER: ${{ secrets.OCI_CLI_USER }}
+  #     OCI_CLI_TENANCY: ${{ secrets.OCI_CLI_TENANCY }}
+  #     OCI_CLI_FINGERPRINT: ${{ secrets.OCI_CLI_FINGERPRINT }}
+  #     OCI_CLI_KEY_CONTENT: ${{ secrets.OCI_CLI_KEY_CONTENT }}
+  #     OCI_CLI_REGION: ${{ secrets.OCI_CLI_REGION }}
+
+  #   steps:
+  #     - name: Run echo command on Compute instance
+  #       uses: oracle-actions/run-oci-cli-command@4425cc0533f324a03be7e728ccd4f4e63b1d4ad8 # v1.1.1
+  #       with:
+  #         command: 'compute instance run-command --instance-id <instance-id> --script-text "echo Hello World"'
