@@ -1,0 +1,111 @@
+name: "Web scraping worker"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "WebScrapingWorker/**"
+      - ".github/workflows/web_scraping_worker.yml"
+      - "!WebScrapingWorker/**.md"
+  pull_request:
+    paths:
+      - "WebScrapingWorker/**"
+      - ".github/workflows/web_scraping_worker.yml"
+      - "!WebScrapingWorker/**.md"
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: "Publish"
+        required: false
+        type: string
+        default: "false"
+      # deploy:
+      #   description: "Deploy"
+      #   required: false
+      #   type: string
+      #   default: "false"
+
+env:
+  WORKING_DIR: WebScrapingWorker
+
+jobs:
+  semver:
+    uses: ./.github/workflows/_semver.yml
+
+  ci:
+    name: "CI"
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+        shell: bash
+
+    steps:
+    #   - name: Checkout
+    #     uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+
+      - name: Hello world
+        run: echo Hello, world!
+
+#   publish:
+#     name: "Publish"
+#     runs-on: ubuntu-latest
+#     if: success() && (github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event.inputs.publish == 'true')
+#     needs: [semver, ci]
+
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+        
+#       - name: Set up QEMU
+#         uses: docker/setup-qemu-action@2b82ce82d56a2a04d2637cd93a637ae1b359c0a7 # v2.2.0
+#         with:
+#           platforms: arm64
+
+#       - name: Set up Docker Buildx
+#         uses: docker/setup-buildx-action@4c0219f9ac95b02789c1075625400b2acbff50b1 # v2.9.1
+
+#       - name: Log in to Docker Hub
+#         uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc # v2.2.0
+#         with:
+#           username: ${{ secrets.DOCKER_USERNAME }}
+#           password: ${{ secrets.DOCKER_PASSWORD }}
+
+#       - name: Extract metadata for Docker
+#         id: meta
+#         uses: docker/metadata-action@818d4b7b91585d195f67373fd9cb0332e31a7175 # v4.6.0
+#         with:
+#           images: dmitryzhomir/apartment-rent-aggregator_data-provider
+#           tags: |
+#             ${{ needs.semver.outputs.new_tag }}
+#             type=raw,value=latest,enable={{is_default_branch}}
+
+#       - name: Build and push Docker image
+#         uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825 # v4.1.1
+#         with:
+#           context: ${{ env.WORKING_DIR }}/src
+#           push: true
+#           platforms: linux/amd64, linux/arm64
+#           tags: ${{ steps.meta.outputs.tags }}
+#           labels: ${{ steps.meta.outputs.labels }}
+
+  # deploy:
+  #   name: "Deploy"
+  #   runs-on: ubuntu-latest
+  #   if: success() && (github.ref == 'refs/heads/main' && github.event_name == 'push' || github.event.inputs.deploy == 'true')
+  #   needs: publish
+
+  #   env:
+  #     OCI_CLI_USER: ${{ secrets.OCI_CLI_USER }}
+  #     OCI_CLI_TENANCY: ${{ secrets.OCI_CLI_TENANCY }}
+  #     OCI_CLI_FINGERPRINT: ${{ secrets.OCI_CLI_FINGERPRINT }}
+  #     OCI_CLI_KEY_CONTENT: ${{ secrets.OCI_CLI_KEY_CONTENT }}
+  #     OCI_CLI_REGION: ${{ secrets.OCI_CLI_REGION }}
+
+  #   steps:
+  #     - name: Run echo command on Compute instance
+  #       uses: oracle-actions/run-oci-cli-command@4425cc0533f324a03be7e728ccd4f4e63b1d4ad8 # v1.1.1
+  #       with:
+  #         command: 'compute instance run-command --instance-id <instance-id> --script-text "echo Hello World"'
