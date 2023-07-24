@@ -7,12 +7,12 @@ on:
     paths:
       - "Database/**"
       - ".github/workflows/database.yml"
-      - "!Database/**.md"
+      - "!**.md"
   pull_request:
     paths:
       - "Database/**"
       - ".github/workflows/database.yml"
-      - "!Database/**.md"
+      - "!**.md"
   workflow_dispatch:
     inputs:
       apply:
