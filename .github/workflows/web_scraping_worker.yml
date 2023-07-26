@@ -39,7 +39,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ${{ env.WORKING_DIR }}
+        # working-directory: ${{ env.WORKING_DIR }}
         shell: bash
 
     steps:
