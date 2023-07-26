@@ -7,12 +7,12 @@ on:
     paths:
       - "Database/**"
       - ".github/workflows/database.yml"
-      - "!Database/**.md"
+      - "!**.md"
   pull_request:
     paths:
       - "Database/**"
       - ".github/workflows/database.yml"
-      - "!Database/**.md"
+      - "!**.md"
   workflow_dispatch:
     inputs:
       apply:
@@ -25,9 +25,6 @@ env:
   TERRAGRUNT_WORKING_DIR: Database/iac
 
 jobs:
-  semver:
-    uses: ./.github/workflows/_semver.yml
-
   terragrunt:
     name: "Terragrunt"
     runs-on: ubuntu-latest

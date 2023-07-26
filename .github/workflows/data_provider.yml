@@ -7,12 +7,12 @@ on:
     paths:
       - "DataProvider/**"
       - ".github/workflows/data_provider.yml"
-      - "!DataProvider/**.md"
+      - "!**.md"
   pull_request:
     paths:
       - "DataProvider/**"
       - ".github/workflows/data_provider.yml"
-      - "!DataProvider/**.md"
+      - "!**.md"
   workflow_dispatch:
     inputs:
       publish:
