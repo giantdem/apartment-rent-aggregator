@@ -34,6 +34,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: minor
           default_prerelease_bump: minor
-          dry_run: ${{ github.event_name != 'pull_request' && github.event.inputs.push != 'true' }}
+          dry_run: ${{ !github.event.pull_request.merged && github.event.inputs.push != 'true' }}
           create_annotated_tag: true
           release_branches: ^main$
