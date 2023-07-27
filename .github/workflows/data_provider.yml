@@ -20,11 +20,11 @@ on:
         required: false
         type: string
         default: "false"
-      # deploy:
-      #   description: "Deploy"
-      #   required: false
-      #   type: string
-      #   default: "false"
+      # # deploy:
+      # #   description: "Deploy"
+      # #   required: false
+      # #   type: string
+      # #   default: "false"
 
 env:
   WORKING_DIR: DataProvider
