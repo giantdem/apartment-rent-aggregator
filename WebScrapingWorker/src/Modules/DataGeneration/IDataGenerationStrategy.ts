@@ -7,9 +7,7 @@ export class DataGenerationStrategyRegistry
 {
     private static implementations: (new () => IDataGenerationStrategy)[] = [];
 
-    public static registerImplementation<T extends new () => IDataGenerationStrategy>(
-        ctor: T
-    )
+    public static registerImplementation<T extends new () => IDataGenerationStrategy>(ctor: T)
     {
         this.implementations.push(ctor);
         return ctor;
@@ -22,8 +20,6 @@ export class DataGenerationStrategyRegistry
 
     public static getImplementationByName(name: string)
     {
-        return this.implementations.find(
-            implementation => implementation.name === name
-        );
+        return this.implementations.find(implementation => implementation.name === name);
     }
 }
