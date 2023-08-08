@@ -7,7 +7,9 @@ export class DataGenerationStrategyRegistry
 {
     private static implementations: (new () => IDataGenerationStrategy)[] = [];
 
-    public static registerImplementation<T extends new () => IDataGenerationStrategy>(ctor: T)
+    public static registerImplementation<T extends new () => IDataGenerationStrategy>(
+        ctor: T, _context: ClassDecoratorContext
+    )
     {
         this.implementations.push(ctor);
         return ctor;
