@@ -9,20 +9,11 @@ export class DataGenerationStrategyRegistry
 
     public static registerImplementation = <T extends new () => IDataGenerationStrategy>(
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        ctor: T, _context: ClassDecoratorContext
-    ) =>
-    {
-        this.implementations.push(ctor);
-        return ctor;
-    };
+        constructor: T, context: ClassDecoratorContext
+    ) => {this.implementations.push(constructor);};
 
-    public static getImplementations()
-    {
-        return this.implementations.slice();
-    }
+    public static getImplementations = () => this.implementations.slice();
 
-    public static getImplementationByName(name: string)
-    {
-        return this.implementations.find(implementation => implementation.name === name);
-    }
+    public static getImplementationByName = (name: string) =>
+        this.implementations.find(implementation => implementation.name === name);
 }
