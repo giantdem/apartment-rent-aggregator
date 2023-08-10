@@ -12,22 +12,22 @@ export class RandomDataGenerationStrategy implements IDataGenerationStrategy
         for (let i = 0; i < 10; i++)
         {
             const rentEntry = new RentEntry();
-            rentEntry.Currency = faker.finance.currencyCode();
-            rentEntry.BuildingType = faker.helpers.arrayElement(['Apartment', 'Townhouse', 'Condo']);
-            rentEntry.Country = faker.location.country();
-            rentEntry.City = faker.location.city();
-            rentEntry.CityArea = faker.location.county();
-            rentEntry.Address = faker.location.streetAddress();
-            rentEntry.Url = `https://example.com/rent/${faker.string.nanoid()}`;
-            rentEntry.DateTimePosted = faker.date.recent();
-            rentEntry.Price = faker.number.int({ min: 1000, max: 5000 });
-            rentEntry.IsBuildingModern = faker.datatype.boolean();
-            rentEntry.FloorNumber = faker.number.int({ min: 1, max: 5 });
-            rentEntry.RoomsAmount = faker.number.int({ min: 1, max: 5 });
-            rentEntry.ApartmentAreaInSqMeters = faker.number.int({ min: 30, max: 200 });
-            rentEntry.Title = `${rentEntry.RoomsAmount} ${rentEntry.RoomsAmount > 1 ? 'rooms' : 'room'} ` +
-                `${rentEntry.BuildingType} for ${rentEntry.Price} ${rentEntry.Currency} ` +
-                `(${rentEntry.City} - ${rentEntry.Country})`;
+            rentEntry.currency = faker.finance.currencyCode();
+            rentEntry.buildingType = faker.helpers.arrayElement(['Apartment', 'Townhouse', 'Condo']);
+            rentEntry.country = faker.location.country();
+            rentEntry.city = faker.location.city();
+            rentEntry.cityArea = faker.location.county();
+            rentEntry.address = faker.location.streetAddress();
+            rentEntry.url = `https://example.com/rent/${faker.string.nanoid()}`;
+            rentEntry.dateTimePosted = faker.date.recent();
+            rentEntry.price = faker.number.int({ min: 1000, max: 5000 });
+            rentEntry.isBuildingModern = faker.datatype.boolean();
+            rentEntry.floorNumber = faker.number.int({ min: 1, max: 5 });
+            rentEntry.roomsAmount = faker.number.int({ min: 1, max: 5 });
+            rentEntry.apartmentAreaInSqMeters = faker.number.int({ min: 30, max: 200 });
+            rentEntry.title = `${rentEntry.roomsAmount} ${rentEntry.roomsAmount > 1 ? 'rooms' : 'room'} ` +
+                `${rentEntry.buildingType} for ${rentEntry.price} ${rentEntry.currency} ` +
+                `(${rentEntry.city} - ${rentEntry.country})`;
 
             rentEntries.push(rentEntry);
         }
