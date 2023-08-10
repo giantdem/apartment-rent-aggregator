@@ -5,7 +5,7 @@ import { faker } from '@faker-js/faker';
 @DataGenerationStrategyRegistry.registerImplementation
 export class RandomDataGenerationStrategy implements IDataGenerationStrategy
 {
-    getRentEntries(): RentEntry[]
+    public getRentEntries(): RentEntry[]
     {
         const rentEntries: RentEntry[] = [];
 
@@ -13,7 +13,7 @@ export class RandomDataGenerationStrategy implements IDataGenerationStrategy
         {
             const rentEntry = new RentEntry();
             rentEntry.currency = faker.finance.currencyCode();
-            rentEntry.buildingType = faker.helpers.arrayElement(['Apartment', 'Townhouse', 'Condo']);
+            rentEntry.buildingType = faker.helpers.arrayElement(['Apartment', 'Townhouse', 'Condo', undefined]);
             rentEntry.country = faker.location.country();
             rentEntry.city = faker.location.city();
             rentEntry.cityArea = faker.location.county();
@@ -23,11 +23,9 @@ export class RandomDataGenerationStrategy implements IDataGenerationStrategy
             rentEntry.price = faker.number.int({ min: 1000, max: 5000 });
             rentEntry.isBuildingModern = faker.datatype.boolean();
             rentEntry.floorNumber = faker.number.int({ min: 1, max: 5 });
-            rentEntry.roomsAmount = faker.number.int({ min: 1, max: 5 });
+            rentEntry.roomsAmount = faker.helpers.arrayElement([faker.number.int({ min: 1, max: 5 }), undefined]);
             rentEntry.apartmentAreaInSqMeters = faker.number.int({ min: 30, max: 200 });
-            rentEntry.title = `${rentEntry.roomsAmount} ${rentEntry.roomsAmount > 1 ? 'rooms' : 'room'} ` +
-                `${rentEntry.buildingType} for ${rentEntry.price} ${rentEntry.currency} ` +
-                `(${rentEntry.city} - ${rentEntry.country})`;
+            generateTitle(rentEntry);
 
             rentEntries.push(rentEntry);
         }
@@ -35,3 +33,16 @@ export class RandomDataGenerationStrategy implements IDataGenerationStrategy
         return rentEntries;
     }
 }
+
+function generateTitle(rentEntry: RentEntry)
+{
+    rentEntry.title = `${rentEntry.roomsAmount ?
+        `${rentEntry.roomsAmount} ${rentEntry.roomsAmount > 1 ? 'rooms' : 'room'} ` : ''}` +
+        `${rentEntry.buildingType ? rentEntry.buildingType : 'Place'}` +
+        ` for ${rentEntry.price} ${rentEntry.currency} ` +
+        `(${rentEntry.city} - ${rentEntry.country})`;
+}
+
+export default process.env['NODE_ENV'] === 'test' ? {
+    generateTitle
+} : {};
