@@ -1,6 +1,6 @@
-import { faker } from '@faker-js/faker';
 import { IDataGenerationStrategy, DataGenerationStrategyRegistry } from '../IDataGenerationStrategy.js';
 import { RentEntry } from '../../../Models/RentEntry.js';
+import { faker } from '@faker-js/faker';
 
 @DataGenerationStrategyRegistry.registerImplementation
 export class RandomDataGenerationStrategy implements IDataGenerationStrategy
@@ -25,7 +25,9 @@ export class RandomDataGenerationStrategy implements IDataGenerationStrategy
             rentEntry.FloorNumber = faker.number.int({ min: 1, max: 5 });
             rentEntry.RoomsAmount = faker.number.int({ min: 1, max: 5 });
             rentEntry.ApartmentAreaInSqMeters = faker.number.int({ min: 30, max: 200 });
-            rentEntry.Title = `${rentEntry.Country} - ${rentEntry.City}: ${rentEntry.RoomsAmount} rooms ${rentEntry.BuildingType} for ${rentEntry.Price} ${rentEntry.Currency}`;
+            rentEntry.Title = `${rentEntry.RoomsAmount} ${rentEntry.RoomsAmount > 1 ? 'rooms' : 'room'} ` +
+                `${rentEntry.BuildingType} for ${rentEntry.Price} ${rentEntry.Currency} ` +
+                `(${rentEntry.City} - ${rentEntry.Country})`;
 
             rentEntries.push(rentEntry);
         }
