@@ -12,7 +12,7 @@ export class DataGenerationStrategyRegistry
     public static registerImplementation = <T extends new () => IDataGenerationStrategy>(
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         constructor: T, context: ClassDecoratorContext
-    ) => {this.implementations.push(constructor);};
+    ) => { this.implementations.push(constructor); };
 
     public static getImplementations = () => this.implementations.slice();
 
