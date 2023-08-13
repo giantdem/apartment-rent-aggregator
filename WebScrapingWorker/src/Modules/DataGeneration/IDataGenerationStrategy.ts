@@ -1,7 +1,9 @@
-import { IDataGeneration } from './IDataGeneration.js';
+import { RentEntry } from '../../Models/RentEntry.js';
 
-// XXX: well, do we actually need this? Or let IDataGeneration have setStrategy()? Or even make these independent?
-export type IDataGenerationStrategy = IDataGeneration;
+export interface IDataGenerationStrategy
+{
+    getRentEntries(): RentEntry[];
+}
 
 export class DataGenerationStrategyRegistry
 {
