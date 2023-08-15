@@ -14,5 +14,9 @@
   },
   "scripts": {
     "test": "node --loader ts-node/esm node_modules/jasmine/bin/jasmine --config=jasmine.json"
+  },
+  "dependencies": {
+    "inversify": "^6.0.1",
+    "reflect-metadata": "^0.1.13"
   }
 }
