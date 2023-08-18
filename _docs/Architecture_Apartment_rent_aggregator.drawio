@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-08-18T10:00:13.180Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="QoNHARrgdAF1xOrksc3t" version="21.3.6" type="github" pages="6">
+<mxfile host="app.diagrams.net" modified="2023-08-18T10:22:49.352Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="lF40rRDDuEJt_jQ8s83G" version="21.3.6" type="github" pages="6">
   <diagram name="High-level application" id="High-level_application">
     <mxGraphModel dx="1450" dy="483" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -37,7 +37,7 @@
         <mxCell id="OINjtmFUPzzOpS-DBbj4-16" value="Telegram bot&lt;br&gt;user" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=20;fontStyle=0;fontFamily=Helvetica;" parent="1" vertex="1">
           <mxGeometry x="-70" y="124.63" width="50" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="V_b-aNV0u7wTXzf40E7H-9" value="Docker containers" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontFamily=Helvetica;startSize=30;fillColor=#FFFFFF;" parent="1" vertex="1">
+        <mxCell id="V_b-aNV0u7wTXzf40E7H-9" value="Kubernetes" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontFamily=Helvetica;startSize=30;fillColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="30" y="380" width="760" height="420" as="geometry">
             <mxRectangle x="30" y="380" width="180" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -95,7 +95,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="rdL2xZTq7Vs_gFtf2hAk" name="Business backend &amp; web API">
-    <mxGraphModel dx="1450" dy="541" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1450" dy="483" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -157,7 +157,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="Database" id="LtboVBtrU09HUxSjuS6i">
-    <mxGraphModel dx="1834" dy="699" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1450" dy="483" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="NHxIjiaiegdvnOvBxfFC-0" />
         <mxCell id="NHxIjiaiegdvnOvBxfFC-1" parent="NHxIjiaiegdvnOvBxfFC-0" />
@@ -169,7 +169,7 @@
             <mxGeometry x="-140" y="240" width="820" height="80" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="l5rECeBpOT4WqcB1mPP0-5" value="Docker containers" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontFamily=Helvetica;startSize=30;fillColor=#FFFFFF;" parent="NHxIjiaiegdvnOvBxfFC-1" vertex="1">
+        <mxCell id="l5rECeBpOT4WqcB1mPP0-5" value="Kubernetes" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontFamily=Helvetica;startSize=30;fillColor=#FFFFFF;" parent="NHxIjiaiegdvnOvBxfFC-1" vertex="1">
           <mxGeometry x="127.5" y="660" width="285" height="160" as="geometry">
             <mxRectangle x="127.5" y="660" width="180" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -206,7 +206,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="9Dh7BV537-x_Idr0ized" name="Data provider">
-    <mxGraphModel dx="1900" dy="541" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1900" dy="483" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -218,7 +218,7 @@
             <mxGeometry x="-140" y="240" width="870" height="80" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="CYjoajdfU9iSqwFnkjiu-3" value="Docker containers" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontFamily=Helvetica;startSize=30;fillColor=#FFFFFF;" parent="1" vertex="1">
+        <mxCell id="CYjoajdfU9iSqwFnkjiu-3" value="Kubernetes" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontFamily=Helvetica;startSize=30;fillColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="-120" y="340" width="830" height="470" as="geometry">
             <mxRectangle x="-120" y="340" width="180" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -270,7 +270,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="Message broker" id="G8D0X6Xd-ZQCqRd8ddIb">
-    <mxGraphModel dx="1450" dy="541" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1450" dy="483" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="32hwXbgZet4p9y06SgDN-0" />
         <mxCell id="32hwXbgZet4p9y06SgDN-1" parent="32hwXbgZet4p9y06SgDN-0" />
@@ -282,7 +282,7 @@
             <mxGeometry x="-140" y="240" width="870" height="80" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="32hwXbgZet4p9y06SgDN-4" value="Docker containers" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontFamily=Helvetica;startSize=30;fillColor=#FFFFFF;" parent="32hwXbgZet4p9y06SgDN-1" vertex="1">
+        <mxCell id="32hwXbgZet4p9y06SgDN-4" value="Kubernetes" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontFamily=Helvetica;startSize=30;fillColor=#FFFFFF;" parent="32hwXbgZet4p9y06SgDN-1" vertex="1">
           <mxGeometry x="-120" y="340" width="830" height="460" as="geometry">
             <mxRectangle x="-120" y="330" width="180" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -325,7 +325,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="Web scraping worker" id="jetY04MqG3wHQO9Zl4hV">
-    <mxGraphModel dx="1635" dy="636" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1635" dy="568" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="hcuLMMALJSWmawNgoL90-0" />
         <mxCell id="hcuLMMALJSWmawNgoL90-1" parent="hcuLMMALJSWmawNgoL90-0" />
@@ -337,7 +337,7 @@
         <mxCell id="hcuLMMALJSWmawNgoL90-2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontFamily=Helvetica;" parent="hcuLMMALJSWmawNgoL90-1" vertex="1">
           <mxGeometry x="-140" y="320" width="910" height="710" as="geometry" />
         </mxCell>
-        <mxCell id="hcuLMMALJSWmawNgoL90-4" value="Docker containers" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontFamily=Helvetica;startSize=30;fillColor=#FFFFFF;" parent="hcuLMMALJSWmawNgoL90-1" vertex="1">
+        <mxCell id="hcuLMMALJSWmawNgoL90-4" value="Kubernetes" style="swimlane;whiteSpace=wrap;html=1;fontSize=14;fontFamily=Helvetica;startSize=30;fillColor=#FFFFFF;" parent="hcuLMMALJSWmawNgoL90-1" vertex="1">
           <mxGeometry x="-120" y="340" width="870" height="670" as="geometry">
             <mxRectangle x="-120" y="340" width="180" height="30" as="alternateBounds" />
           </mxGeometry>
