@@ -6,13 +6,11 @@ export class MessagePublishing implements IMessagePublishing
 {
     private _bus: BusInstance;
 
-    constructor(bus: BusInstance)
-    {
-        this._bus = bus;
-    }
+    constructor(bus: BusInstance) { this._bus = bus; }
 
     async publish(rentEntries: RentEntry[])
     {
-        await this._bus.publish(rentEntries);
+        for (const rentEntry of rentEntries)
+            await this._bus.publish(rentEntry);
     }
 }
