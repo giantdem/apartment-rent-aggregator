@@ -1,5 +1,12 @@
-export class RentEntry
+import { Event } from "@node-ts/bus-messages";
+
+// XXX: should the model implement Event?
+export class RentEntry implements Event
 {
+    // XXX: validate that this name is correct
+    $name = 'RentEntry';
+    $version = 1;
+
     private _url!: string;
     private _dateTimePosted!: Date;
     private _title!: string;
