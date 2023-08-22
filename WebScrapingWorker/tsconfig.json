@@ -13,8 +13,7 @@
         // TODO: does lib need to be filled with "es6" or something else for DI?
         // "lib": [],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */
         // "jsx": "preserve",                                /* Specify what JSX code is generated. */
-        // TODO: does experimentalDecorators need to be true for DI?
-        // "experimentalDecorators": true,                   /* Enable experimental support for legacy experimental decorators. */
+        "experimentalDecorators": true,                   /* Enable experimental support for legacy experimental decorators. */
         // TODO: does emitDecoratorMetadata need to be true for DI?
         // "emitDecoratorMetadata": true,                    /* Emit design-type metadata for decorated declarations in source files. */
         // "jsxFactory": "",                                 /* Specify the JSX factory function used when targeting React JSX emit, e.g. 'React.createElement' or 'h'. */
@@ -33,7 +32,7 @@
         // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
         // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
         // TODO: does types need to have reflect-metadata for DI? And other stuff
-        "types": ["reflect-metadata", "node"],                                      /* Specify type package names to be included without being referenced in a source file. */
+        // "types": ["reflect-metadata", "node"],                                      /* Specify type package names to be included without being referenced in a source file. */
         // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
         // "moduleSuffixes": [],                             /* List of file name suffixes to search when resolving a module. */
         // "allowImportingTsExtensions": true,               /* Allow imports to include TypeScript file extensions. Requires '--moduleResolution bundler' and either '--noEmit' or '--emitDeclarationOnly' to be set. */

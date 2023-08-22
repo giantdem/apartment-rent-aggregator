@@ -1,6 +1,8 @@
+import { injectable } from 'inversify';
 import { IDataGeneration } from './IDataGeneration.js';
 import { IDataGenerationStrategy, DataGenerationStrategyRegistry } from './IDataGenerationStrategy.js';
 
+@injectable()
 export class DataGeneration implements IDataGeneration
 {
     private _strategy!: IDataGenerationStrategy;
