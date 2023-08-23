@@ -1,7 +1,9 @@
+import { injectable } from 'inversify';
 import { BusInstance } from '@node-ts/bus-core';
 import { IMessagePublishing } from './IMessagePublishing.js';
 import { RentEntry } from '../../Models/RentEntry.js';
 
+@injectable()
 export class MessagePublishing implements IMessagePublishing
 {
     private _bus: BusInstance;
