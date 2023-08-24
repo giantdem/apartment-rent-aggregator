@@ -1,6 +1,4 @@
-import { IOrchestrator } from './IOrchestrator.js';
-import { IDataGeneration } from '../DataGeneration/IDataGeneration.js';
-import { IMessagePublishing } from '../MessagePublishing/IMessagePublishing.js';
+import { IDataGeneration,  IMessagePublishing, IOrchestrator} from '../../interfaces.js';
 
 export class Orchestrator implements IOrchestrator
 {
