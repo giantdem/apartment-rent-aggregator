@@ -8,6 +8,7 @@ export class MessagePublishing implements IMessagePublishing
 {
     private _bus: BusInstance;
 
+    // XXX: can we remove constructors?
     constructor(bus: BusInstance) { this._bus = bus; }
 
     async publish(rentEntries: RentEntry[])
