@@ -6,9 +6,9 @@ import { Bus, BusInstance } from '@node-ts/bus-core';
 import { RabbitMqTransport, RabbitMqTransportConfiguration } from '@node-ts/bus-rabbitmq';
 
 const container = new Container();
-container.bind<IDataGeneration>(TYPES.IDataGeneration).to(DataGeneration);
-container.bind<IMessagePublishing>(TYPES.IMessagePublishing).to(MessagePublishing);
-container.bind<IOrchestrator>(TYPES.IOrchestrator).to(Orchestrator);
+container.bind<IDataGeneration>(TYPES.IDataGeneration).to(DataGeneration).inSingletonScope();
+container.bind<IMessagePublishing>(TYPES.IMessagePublishing).to(MessagePublishing).inSingletonScope();
+container.bind<IOrchestrator>(TYPES.IOrchestrator).to(Orchestrator).inSingletonScope();
 
 const rabbitConfiguration: RabbitMqTransportConfiguration = {
     queueName: 'RentEntries',
