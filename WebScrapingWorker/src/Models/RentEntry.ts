@@ -1,6 +1,5 @@
 import { Event } from "@node-ts/bus-messages";
 
-// XXX: should the model implement Event?
 export class RentEntry implements Event
 {
     // XXX: validate that this name is correct
