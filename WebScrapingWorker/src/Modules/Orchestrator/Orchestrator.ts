@@ -5,15 +5,8 @@ import { IDataGeneration,  IMessagePublishing, IOrchestrator } from '../../inter
 @injectable()
 export class Orchestrator implements IOrchestrator
 {
-    private _dataGeneration: IDataGeneration;
-    private _messagePublishing: IMessagePublishing;
-
-    constructor(@inject(TYPES.IDataGeneration) dataGeneration: IDataGeneration,
-        @inject(TYPES.IMessagePublishing) messagePublishing: IMessagePublishing)
-    {
-        this._dataGeneration = dataGeneration;
-        this._messagePublishing = messagePublishing;
-    }
+    constructor(@inject(TYPES.IDataGeneration) private _dataGeneration: IDataGeneration,
+        @inject(TYPES.IMessagePublishing) private _messagePublishing: IMessagePublishing) {}
 
     executeRentDataPipeline()
     {

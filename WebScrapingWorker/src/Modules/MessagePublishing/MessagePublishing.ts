@@ -6,9 +6,7 @@ import { RentEntry } from '../../Models/RentEntry.js';
 @injectable()
 export class MessagePublishing implements IMessagePublishing
 {
-    private _bus: BusInstance;
-
-    constructor(@inject(BusInstance) bus: BusInstance) { this._bus = bus; }
+    constructor(@inject(BusInstance) private _bus: BusInstance) {}
 
     async publish(rentEntries: RentEntry[])
     {
