@@ -7,11 +7,8 @@ import busCore from '@node-ts/bus-core';
 import busRabbitMq from '@node-ts/bus-rabbitmq';
 
 const container = new Container();
-container.bind<IDataGeneration>(TYPES.IDataGeneration).to(DataGeneration).inSingletonScope();
-container.bind<IMessagePublishing>(TYPES.IMessagePublishing).to(MessagePublishing).inSingletonScope();
-container.bind<IOrchestrator>(TYPES.IOrchestrator).to(Orchestrator).inSingletonScope();
 
-await busCore.Bus.configure()
+const bus = await busCore.Bus.configure()
     // .withTransport(new busRabbitMq.RabbitMqTransport({
     //     queueName: 'RentEntries',
     //     connectionString: 'amqp://guest:guest@localhost',
@@ -24,5 +21,10 @@ await busCore.Bus.configure()
         }
     })
     .initialize();
+container.bind<busCore.BusInstance>(busCore.BusInstance).toConstantValue(bus);
+
+container.bind<IDataGeneration>(TYPES.IDataGeneration).to(DataGeneration).inSingletonScope();
+container.bind<IMessagePublishing>(TYPES.IMessagePublishing).to(MessagePublishing).inSingletonScope();
+container.bind<IOrchestrator>(TYPES.IOrchestrator).to(Orchestrator).inSingletonScope();
 
 export { container };
