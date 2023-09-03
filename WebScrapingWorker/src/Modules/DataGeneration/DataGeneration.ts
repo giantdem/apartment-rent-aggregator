@@ -7,7 +7,7 @@ export class DataGeneration implements IDataGeneration
 {
     private _strategy!: IDataGenerationStrategy;
 
-    constructor(strategy: string | IDataGenerationStrategy) { this.setStrategy(strategy); }
+    constructor(strategy: string | IDataGenerationStrategy = "RandomDataGenerationStrategy") { this.setStrategy(strategy); }
 
     setStrategy(strategy: string | IDataGenerationStrategy)
     {
