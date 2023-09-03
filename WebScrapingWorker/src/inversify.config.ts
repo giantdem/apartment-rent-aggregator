@@ -1,4 +1,5 @@
 import { Container } from "inversify";
+import "reflect-metadata";
 import { TYPES } from "./types.js";
 import { IDataGeneration, IMessagePublishing, IOrchestrator } from "./interfaces.js";
 import { DataGeneration, MessagePublishing, Orchestrator } from "./entities.js";
