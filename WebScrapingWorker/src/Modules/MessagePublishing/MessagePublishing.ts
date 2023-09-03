@@ -1,12 +1,12 @@
 import { injectable, inject } from 'inversify';
-import { BusInstance } from '@node-ts/bus-core';
+import busCore from '@node-ts/bus-core';
 import { IMessagePublishing } from './IMessagePublishing.js';
 import { RentEntry } from '../../Models/RentEntry.js';
 
 @injectable()
 export class MessagePublishing implements IMessagePublishing
 {
-    constructor(@inject(BusInstance) private _bus: BusInstance) {}
+    constructor(@inject(busCore.BusInstance) private _bus: busCore.BusInstance) {}
 
     async publish(rentEntries: RentEntry[])
     {
