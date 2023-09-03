@@ -12,11 +12,11 @@ container.bind<IMessagePublishing>(TYPES.IMessagePublishing).to(MessagePublishin
 container.bind<IOrchestrator>(TYPES.IOrchestrator).to(Orchestrator).inSingletonScope();
 
 await busCore.Bus.configure()
-    .withTransport(new busRabbitMq.RabbitMqTransport({
-        queueName: 'RentEntries',
-        connectionString: 'amqp://guest:guest@localhost',
-        maxRetries: 5
-    }))
+    // .withTransport(new busRabbitMq.RabbitMqTransport({
+    //     queueName: 'RentEntries',
+    //     connectionString: 'amqp://guest:guest@localhost',
+    //     maxRetries: 5
+    // }))
     .withContainer({
         get <T>(type: busCore.ClassConstructor<T>)
         {
