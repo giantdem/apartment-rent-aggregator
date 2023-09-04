@@ -1,11 +1,6 @@
-import { Event } from "@node-ts/bus-messages";
-
+// XXX: define message model
 export class RentEntry implements Event
 {
-    // XXX: validate that this name is correct
-    $name = 'RentEntry';
-    $version = 1;
-
     private _url!: string;
     private _dateTimePosted!: Date;
     private _title!: string;

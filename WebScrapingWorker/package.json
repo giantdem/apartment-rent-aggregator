@@ -17,9 +17,6 @@
     "test": "node --loader ts-node/esm node_modules/jasmine/bin/jasmine --config=jasmine.json"
   },
   "dependencies": {
-    "@node-ts/bus-core": "^1.0.16",
-    "@node-ts/bus-messages": "^1.0.6",
-    "@node-ts/bus-rabbitmq": "^1.0.21",
     "inversify": "^6.0.1",
     "minimist": "^1.2.8",
     "reflect-metadata": "^0.1.13"
