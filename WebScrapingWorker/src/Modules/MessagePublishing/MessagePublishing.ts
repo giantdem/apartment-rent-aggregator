@@ -1,16 +1,17 @@
 import { injectable, inject } from 'inversify';
+import { TYPES } from "../../types.js";
 import { IMessagePublishing } from './IMessagePublishing.js';
 import { RentEntry } from '../../Models/RentEntry.js';
+import { Publisher } from 'rabbitmq-client';
 
-// XXX: define messaging injection
 @injectable()
 export class MessagePublishing implements IMessagePublishing
 {
-    constructor(@inject(busCore.BusInstance) private _bus: busCore.BusInstance) {}
+    constructor(@inject(TYPES.Publisher) private _pub: Publisher) {}
 
     async publish(rentEntries: RentEntry[])
     {
         for (const rentEntry of rentEntries)
-            await this._bus.publish(rentEntry);
+            await this._pub.send("RentEntries", rentEntry);
     }
 }
