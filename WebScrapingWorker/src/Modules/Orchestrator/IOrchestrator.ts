@@ -1,4 +1,4 @@
 export interface IOrchestrator
 {
-    executeRentDataPipeline(): void;
+    executeRentDataPipeline(): Promise<void>;
 }

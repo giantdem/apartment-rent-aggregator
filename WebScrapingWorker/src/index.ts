@@ -18,6 +18,6 @@ else
 }
 
 const orchestrator = container.get<IOrchestrator>(TYPES.IOrchestrator);
-orchestrator.executeRentDataPipeline();
+await orchestrator.executeRentDataPipeline();
 
 // XXX: exit the app
