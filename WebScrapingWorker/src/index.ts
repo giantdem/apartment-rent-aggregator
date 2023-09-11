@@ -1,4 +1,4 @@
-import { container } from "./inversify.config.js";
+import { container, exitApplication } from "./inversify.config.js";
 import { IDataGeneration, IOrchestrator } from "./interfaces.js";
 import { TYPES } from "./types.js";
 import minimist from "minimist";
@@ -20,4 +20,4 @@ else
 const orchestrator = container.get<IOrchestrator>(TYPES.IOrchestrator);
 await orchestrator.executeRentDataPipeline();
 
-// XXX: exit the app
+exitApplication();

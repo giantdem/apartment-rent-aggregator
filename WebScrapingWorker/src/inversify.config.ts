@@ -28,6 +28,11 @@ function onShutdown()
         .catch((err) => console.error(err));
     console.log('Messaging connection is closed.');
 }
+export function exitApplication()
+{
+    onShutdown();
+    process.exit(0);
+}
 process.on('SIGINT', onShutdown);
 process.on('SIGTERM', onShutdown);
 
