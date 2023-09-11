@@ -20,7 +20,7 @@ function registerMessaging()
 
     const pub = client.createPublisher({
         confirm: true,
-        maxAttempts: 5,
+        maxAttempts: 2,
         exchanges: [{ exchange: 'RentEntries', passive: true }]
     });
 
