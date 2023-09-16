@@ -11,6 +11,7 @@ if (dataGenerationStrategy)
 {
     const dataGeneration = container.get<IDataGeneration>(TYPES.IDataGeneration);
     dataGeneration.setStrategy(dataGenerationStrategy);
+    console.log('Data generation strategy set: %s', dataGenerationStrategy);
 }
 else
 {
