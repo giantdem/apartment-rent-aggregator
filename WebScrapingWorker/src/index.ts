@@ -20,4 +20,4 @@ else
 const orchestrator = container.get<IOrchestrator>(TYPES.IOrchestrator);
 await orchestrator.executeRentDataPipeline();
 
-exitApplication();
+await exitApplication();

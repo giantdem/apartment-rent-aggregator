@@ -21,19 +21,22 @@ container.bind<IDataGeneration>(TYPES.IDataGeneration).to(DataGeneration).inSing
 container.bind<IMessagePublishing>(TYPES.IMessagePublishing).to(MessagePublishing).inSingletonScope();
 container.bind<IOrchestrator>(TYPES.IOrchestrator).to(Orchestrator).inSingletonScope();
 
-function onShutdown()
+async function onShutdown()
 {
-    pub.close()
-        .then(() => client.close())
-        .catch((err) => console.error(err));
-    console.log('Messaging connection is closed.');
+    try
+    {
+        await pub.close();
+        await client.close();
+        console.log('Messaging connection is closed.');
+    }
+    catch (err) { console.error(err); }
 }
-export function exitApplication()
+export async function exitApplication()
 {
-    onShutdown();
+    await onShutdown();
     process.exit(0);
 }
-process.on('SIGINT', onShutdown);
-process.on('SIGTERM', onShutdown);
+process.on('SIGINT', () => void onShutdown());
+process.on('SIGTERM', () => void onShutdown());
 
 export { container };
