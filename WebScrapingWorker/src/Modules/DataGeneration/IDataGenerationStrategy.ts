@@ -7,4 +7,4 @@ export interface IDataGenerationStrategy
 }
 
 class DataGenerationStrategyRegistry extends StrategyRegistry<IDataGenerationStrategy> {}
-export const dataGenerationStrategyRegistry = new DataGenerationStrategyRegistry;
+export const dataGenerationStrategyRegistry = new DataGenerationStrategyRegistry();
