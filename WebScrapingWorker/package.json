@@ -14,6 +14,7 @@
     "typescript": "^5.1.6"
   },
   "scripts": {
+    "dev": "node --loader ts-node/esm src/index.ts",
     "test": "node --loader ts-node/esm node_modules/jasmine/bin/jasmine --config=jasmine.json"
   },
   "dependencies": {
