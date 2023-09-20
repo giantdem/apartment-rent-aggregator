@@ -2,7 +2,6 @@
   "name": "webscrapingworker",
   "type": "module",
   "devDependencies": {
-    "@faker-js/faker": "^8.0.2",
     "@types/jasmine": "^4.3.5",
     "@types/minimist": "^1.2.2",
     "@types/node": "^20.4.5",
@@ -21,6 +20,7 @@
     "test": "node --loader ts-node/esm node_modules/jasmine/bin/jasmine --config=jasmine.json"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.1.0",
     "inversify": "^6.0.1",
     "minimist": "^1.2.8",
     "rabbitmq-client": "^4.3.0",
