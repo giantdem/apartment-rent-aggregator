@@ -1,0 +1,91 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apartment-rent-aggregator-rabbitmq
+spec:
+  selector:
+    app: apartment-rent-aggregator-rabbitmq
+  ports:
+    - protocol: TCP
+      name: rabbitmq
+      port: 5672
+      targetPort: 5672
+    - protocol: TCP
+      name: rabbitmq-web
+      port: 15672
+      targetPort: 15672
+    - protocol: TCP
+      name: rabbitmq-metrics
+      port: 15692
+      targetPort: 15692
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apartment-rent-aggregator-dataprovider
+spec:
+  selector:
+    app: apartment-rent-aggregator-dataprovider
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: apartment-rent-aggregator-rabbitmq-pod
+  labels:
+    app: apartment-rent-aggregator-rabbitmq
+spec:
+  serviceName: apartment-rent-aggregator-rabbitmq
+  selector:
+    matchLabels:
+      app: apartment-rent-aggregator-rabbitmq
+  template:
+    metadata:
+      labels:
+        app: apartment-rent-aggregator-rabbitmq
+    spec:
+      containers:
+        - name: rabbitmq
+          image: masstransit/rabbitmq:latest
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 5672
+            - containerPort: 15672
+            - containerPort: 15692
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: apartment-rent-aggregator-data-provider-pod
+  labels:
+    app: apartment-rent-aggregator-data-provider
+spec:
+  serviceName: apartment-rent-aggregator-data-provider
+  selector:
+    matchLabels:
+      app: apartment-rent-aggregator-data-provider
+  template:
+    metadata:
+      labels:
+        app: apartment-rent-aggregator-data-provider
+    spec:
+      containers:
+        - name: dataprovider
+          image: dmitryzhomir/apartment-rent-aggregator_data-provider:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"

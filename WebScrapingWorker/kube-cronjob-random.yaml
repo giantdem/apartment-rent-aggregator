@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: apartment-rent-aggregator-web-scraping-worker-cronjob
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: webscrapingworker
+            image: webscrapingworker:latest
+            args:
+            - "-s"
+            - "RandomDataGenerationStrategy"
+          restartPolicy: OnFailure
