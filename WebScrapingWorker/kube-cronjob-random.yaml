@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: apartment-rent-aggregator-web-scraping-worker-cronjob
+  name: apartment-rent-aggregator-web-scraping-worker-cron
 spec:
   schedule: "*/1 * * * *"
   jobTemplate:
@@ -10,8 +10,9 @@ spec:
         spec:
           containers:
           - name: webscrapingworker
-            image: webscrapingworker:latest
-            args:
-            - "-s"
-            - "RandomDataGenerationStrategy"
+            image: dmitryzhomir/apartment-rent-aggregator_web-scraping-worker:latest
+            imagePullPolicy: IfNotPresent
+            env:
+            - name: DATA_GENERATION_STRATEGY
+              value: RandomDataGenerationStrategy
           restartPolicy: OnFailure
