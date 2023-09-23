@@ -42,4 +42,6 @@ COPY --from=build /app /app
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD [ "npm", "run", "start" ]
+ARG DATA_GENERATION_STRATEGY
+ENV DATA_GENERATION_STRATEGY=${DATA_GENERATION_STRATEGY}
+CMD npm run start -- -s ${DATA_GENERATION_STRATEGY}
