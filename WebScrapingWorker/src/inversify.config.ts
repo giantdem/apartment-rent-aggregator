@@ -7,7 +7,7 @@ import { Connection, Publisher } from 'rabbitmq-client';
 
 const container = new Container();
 
-const client = new Connection('amqp://guest:guest@localhost');
+const client = new Connection('amqp://guest:guest@rabbitmq');
 client.on('error', (err) => { console.error('RabbitMQ connection error.', err); });
 client.on('connection', () => { console.log('Connection successfully (re)established.'); });
 const pub = client.createPublisher({
