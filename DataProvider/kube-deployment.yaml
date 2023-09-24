@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: apartment-rent-aggregator-dataprovider
+  name: apartment-rent-aggregator-data-provider
 spec:
   selector:
-    app: apartment-rent-aggregator-dataprovider
+    app: apartment-rent-aggregator-data-provider
   ports:
     - protocol: TCP
       port: 80
@@ -13,7 +13,7 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: apartment-rent-aggregator-data-provider-pod
+  name: apartment-rent-aggregator-data-provider
   labels:
     app: apartment-rent-aggregator-data-provider
 spec:
@@ -27,7 +27,7 @@ spec:
         app: apartment-rent-aggregator-data-provider
     spec:
       containers:
-        - name: dataprovider
+        - name: data-provider
           image: dmitryzhomir/apartment-rent-aggregator_data-provider:latest
           imagePullPolicy: IfNotPresent
           env:

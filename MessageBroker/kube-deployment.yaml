@@ -22,7 +22,7 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: apartment-rent-aggregator-rabbitmq-pod
+  name: apartment-rent-aggregator-rabbitmq
   labels:
     app: apartment-rent-aggregator-rabbitmq
 spec:

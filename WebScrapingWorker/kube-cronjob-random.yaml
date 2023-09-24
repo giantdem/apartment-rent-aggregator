@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: apartment-rent-aggregator-web-scraping-worker-cron
+  name: apartment-rent-aggregator-web-scraping-worker
 spec:
   schedule: "*/1 * * * *"
   jobTemplate:
@@ -9,7 +9,7 @@ spec:
       template:
         spec:
           containers:
-          - name: webscrapingworker
+          - name: web-scraping-worker
             image: dmitryzhomir/apartment-rent-aggregator_web-scraping-worker:latest
             imagePullPolicy: IfNotPresent
             env:
