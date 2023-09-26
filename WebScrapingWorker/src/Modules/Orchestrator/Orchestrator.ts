@@ -8,9 +8,9 @@ export class Orchestrator implements IOrchestrator
     constructor(@inject(TYPES.IDataGeneration) private _dataGeneration: IDataGeneration,
         @inject(TYPES.IMessagePublishing) private _messagePublishing: IMessagePublishing) {}
 
-    executeRentDataPipeline()
+    async executeRentDataPipeline()
     {
         const rentEntries = this._dataGeneration.getRentEntries();
-        this._messagePublishing.publish(rentEntries);
+        await this._messagePublishing.publish(rentEntries);
     }
 }

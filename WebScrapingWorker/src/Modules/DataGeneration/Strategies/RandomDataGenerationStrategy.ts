@@ -1,8 +1,8 @@
-import { IDataGenerationStrategy, DataGenerationStrategyRegistry } from '../IDataGenerationStrategy.js';
+import { IDataGenerationStrategy, dataGenerationStrategyRegistry } from '../IDataGenerationStrategy.js';
 import { RentEntry } from '../../../Models/RentEntry.js';
 import { faker } from '@faker-js/faker';
 
-@DataGenerationStrategyRegistry.registerImplementation
+@dataGenerationStrategyRegistry.registerImplementation
 export class RandomDataGenerationStrategy implements IDataGenerationStrategy
 {
     public getRentEntries(): RentEntry[]

@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apartment-rent-aggregator-data-provider
+spec:
+  selector:
+    app: apartment-rent-aggregator-data-provider
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: apartment-rent-aggregator-data-provider
+  labels:
+    app: apartment-rent-aggregator-data-provider
+spec:
+  serviceName: apartment-rent-aggregator-data-provider
+  selector:
+    matchLabels:
+      app: apartment-rent-aggregator-data-provider
+  template:
+    metadata:
+      labels:
+        app: apartment-rent-aggregator-data-provider
+    spec:
+      containers:
+        - name: data-provider
+          image: dmitryzhomir/apartment-rent-aggregator_data-provider:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: Serilog__MinimumLevel__Default
+              value: Debug
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
